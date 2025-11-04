@@ -11,9 +11,5 @@ async def main():
         )
 
         print(f"✅ Agent {agent.name} is running with Ollama backend!")
-        print("Open your browser and navigate to the web interface to interact with the agent")
-        
-        input("Press Enter to stop the server...")
-
 if __name__ == "__main__":
     asyncio.run(main())
