@@ -82,3 +82,8 @@ http://localhost:8800/
 |请问您想查询哪里的天气呢？比如北京、上海或者深圳。||
 ||深圳|
 |已经为您查到了深圳今天的天气：温度18°C，多云，湿度70%。还有其他城市想查询吗？||
+
+[Weather Agent示例，Parlant底层(Journey 和 Guideline)运行机制](weather_agent.md)
+
+## Journey 和 Guideline原理
+[Journey 和 Guideline 源代码分析](journey-guideline-analysis/README.md)
