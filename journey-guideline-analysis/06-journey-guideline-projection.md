@@ -178,3 +178,16 @@ def extract_node_id_from_journey_node_guideline_id(
 2. **路径跟踪**: 通过 `follow_ups` 元数据跟踪 Journey 路径
 3. **状态管理**: 通过 `index` 和 `journey_id` 管理 Journey 执行状态
 4. **类型识别**: 通过 `kind` 区分不同类型的节点
+
+
+## 相关文档
+
+### 实际运行示例
+- [11-weather-agent-startup-flow.md](./11-weather-agent-startup-flow.md) - Journey 创建和投影示例
+- [12-weather-agent-request-flow.md](./12-weather-agent-request-flow.md) - 投影后的 Guideline 使用示例
+- [14-method-call-chains.md](./14-method-call-chains.md) - 投影方法调用链
+
+### 相关机制
+- [07-engine-integration.md](./07-engine-integration.md) - 投影后的节点选择
+- [08-complete-flow.md](./08-complete-flow.md) - 投影在完整流程中的位置
+- [02-core-models.md](./02-core-models.md) - Journey 和 Guideline 数据模型

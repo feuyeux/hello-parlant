@@ -72,6 +72,36 @@
    - 数据流图
    - 关系图
 
+11. **[11-weather-agent-startup-flow.md](./11-weather-agent-startup-flow.md)** - Weather Agent 启动流程详解
+   - 环境准备和依赖检查
+   - 服务器初始化过程
+   - 数据库和 NLP 服务连接
+   - Agent、Journey 和 Guideline 的创建
+   - 评估和缓存机制
+   - 方法调用链和数据流转
+   - LLM 调用点分析
+
+12. **[12-weather-agent-request-flow.md](./12-weather-agent-request-flow.md)** - Weather Agent 请求处理流程详解
+   - 4 个典型场景的详细分析
+   - 方法调用链和数据转换
+   - Journey 状态变化和路径更新
+   - LLM 调用点的详细分析
+   - 场景对比和性能分析
+
+13. **[13-llm-invocation-analysis.md](./13-llm-invocation-analysis.md)** - LLM 调用分析
+   - 启动阶段 LLM 调用统计
+   - 请求处理阶段 LLM 调用统计
+   - 调用次数和 Token 消耗分析
+   - 成本估算和优化建议
+   - 缓存机制和性能优化
+
+14. **[14-method-call-chains.md](./14-method-call-chains.md)** - 方法调用链详解
+   - 启动流程完整调用树
+   - 请求处理流程完整调用树
+   - 关键方法签名和作用
+   - 数据转换和格式变化
+   - 调用统计和性能分析
+
 ## 快速导航
 
 ### 按角色导航
@@ -92,6 +122,12 @@
 **架构师**:
 - 从 [01-overview.md](./01-overview.md) 开始
 - 阅读 [09-collaboration-mechanism.md](./09-collaboration-mechanism.md) 了解整体设计
+- 查看 [11-weather-agent-startup-flow.md](./11-weather-agent-startup-flow.md) 了解实际运行流程
+
+**性能优化者**:
+- 阅读 [13-llm-invocation-analysis.md](./13-llm-invocation-analysis.md) 了解 LLM 调用模式
+- 查看 [14-method-call-chains.md](./14-method-call-chains.md) 了解方法调用开销
+- 参考 [12-weather-agent-request-flow.md](./12-weather-agent-request-flow.md) 了解场景对比
 
 ### 按主题导航
 
@@ -100,6 +136,7 @@
 **引擎集成**: 06 → 07
 **完整流程**: 08
 **设计思想**: 09
+**实际运行**: 11 → 12 → 13 → 14
 
 ## 核心概念速查
 
@@ -124,6 +161,11 @@
 - **定义**: 选择 Journey 中下一个要执行的节点
 - **实现**: JourneyNodeSelectionBatch
 - **方法**: LLM 推理 + 路径验证
+
+### LLM 调用 (LLM Invocation)
+- **定义**: 调用大语言模型进行推理和生成
+- **类型**: 向量化、评估、节点选择、响应生成
+- **优化**: 缓存、自动返回、批处理
 
 ## 关键文件位置
 

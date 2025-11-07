@@ -1,9 +1,16 @@
 # weather_agent.py
 # 简化的天气查询代理 - 更自然流畅的对话体验
 
+import os
 import parlant.sdk as p
 import asyncio
 from datetime import datetime
+
+# 设置 Ollama 环境变量
+os.environ["OLLAMA_BASE_URL"] = "http://localhost:11434"
+os.environ["OLLAMA_MODEL"] = "qwen2.5:latest"
+os.environ["OLLAMA_EMBEDDING_MODEL"] = "nomic-embed-text:latest"
+os.environ["OLLAMA_API_TIMEOUT"] = "300"
 
 
 @p.tool
@@ -24,10 +31,8 @@ async def get_weather(context: p.ToolContext, location: str) -> p.ToolResult:
         "london": {"temp": 12, "unit": "°C", "condition": "Rainy", "humidity": 80},
         "tokyo": {"temp": 16, "unit": "°C", "condition": "Partly Cloudy", "humidity": 55},
     }
-    
-    # 查找地区（不区分大小写）
-    location_lower = location.lower()
-    data = weather_data.get(location_lower)
+
+    data = weather_data.get(location)
     
     if not data:
         return p.ToolResult(
@@ -146,6 +151,7 @@ async def create_weather_journey(agent: p.Agent) -> p.Journey:
 
 
 async def main() -> None:
+
     async with p.Server(nlp_service=p.NLPServices.ollama) as server:
         agent = await server.create_agent(
             name="小天",

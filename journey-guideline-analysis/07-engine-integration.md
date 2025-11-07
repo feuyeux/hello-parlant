@@ -295,3 +295,16 @@ def _get_verified_node_advancement(
    ↓
 7. 返回响应给用户
 ```
+
+
+## 相关文档
+
+### 实际运行示例
+- [12-weather-agent-request-flow.md](./12-weather-agent-request-flow.md) - 节点选择的实际运行示例
+- [13-llm-invocation-analysis.md](./13-llm-invocation-analysis.md) - 节点选择的 LLM 调用分析
+- [14-method-call-chains.md](./14-method-call-chains.md) - 节点选择的方法调用链
+
+### 相关机制
+- [06-journey-guideline-projection.md](./06-journey-guideline-projection.md) - Journey 投影机制
+- [08-complete-flow.md](./08-complete-flow.md) - 完整执行流程
+- [02-core-models.md](./02-core-models.md) - Journey 数据模型
