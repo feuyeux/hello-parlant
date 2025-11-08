@@ -47,3 +47,6 @@ parlant-data/evaluation_cache.json
 # OS
 .DS_Store
 Thumbs.db
+
+.env
+.kiro/

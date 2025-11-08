@@ -5,13 +5,21 @@ import os
 import parlant.sdk as p
 import asyncio
 from datetime import datetime
+from dotenv import load_dotenv
+
+# 加载 .env 文件中的环境变量
+load_dotenv()
+
+# 设置智谱 AI 环境变量
+# 请确保设置了 ZHIPUAI_API_KEY 环境变量
+# export ZHIPUAI_API_KEY=your_api_key_here
+
 
 # 设置 Ollama 环境变量
 os.environ["OLLAMA_BASE_URL"] = "http://localhost:11434"
 os.environ["OLLAMA_MODEL"] = "qwen2.5:latest"
 os.environ["OLLAMA_EMBEDDING_MODEL"] = "nomic-embed-text:latest"
 os.environ["OLLAMA_API_TIMEOUT"] = "300"
-
 
 @p.tool
 async def get_weather(context: p.ToolContext, location: str) -> p.ToolResult:
@@ -152,7 +160,7 @@ async def create_weather_journey(agent: p.Agent) -> p.Journey:
 
 async def main() -> None:
 
-    async with p.Server(nlp_service=p.NLPServices.ollama) as server:
+    async with p.Server(nlp_service=p.NLPServices.zhipu) as server:
         agent = await server.create_agent(
             name="小天",
             description="友好的天气助手，用自然对话方式帮助用户查询天气"

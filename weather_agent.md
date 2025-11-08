@@ -491,6 +491,121 @@ async def transition_to(
 
 ## 执行 Journey 流程
 
+`.venv/Lib/site-packages/parlant/core/application.py`
+
+```python
+    async def _process_session(self, session: Session) -> None:
+        event_emitter = await self._event_emitter_factory.create_event_emitter(
+            emitting_agent_id=session.agent_id,
+            session_id=session.id,
+        )
+
+        await self._engine.process(
+```
+
+`.venv/Lib/site-packages/parlant/core/engines/alpha/engine.py`
+```python
+    async def process(
+        self,
+        context: Context,
+        event_emitter: EventEmitter,
+    ) -> bool:
+        """Processes a context and emits new events as needed"""
+
+        # Load the full relevant information from storage.
+        loaded_context = await self._load_context(context, event_emitter)
+
+    async def _do_process(
+        self,
+        context: LoadedContext,
+    ) -> None:
+    
+    async def _run_preparation_iteration(
+        self,
+        context: LoadedContext,
+        preamble_task: asyncio.Task[bool],
+    ) -> _PreparationIterationResult:
+        
+    async def _run_initial_preparation_iteration(
+        self,
+        context: LoadedContext,
+        preamble_task: asyncio.Task[bool],
+    ) -> _PreparationIterationResult:
+        
+    async def _load_matched_guidelines_and_journeys(
+        self,
+        context: LoadedContext,
+    ) -> _GuidelineAndJourneyMatchingResult:
+        # Step 1: Retrieve the journeys likely to be activated for this agent
+        # Step 2 : Retrieve all the guidelines for the context.
+        # Step 3: Exclude guidelines whose prerequisite journeys are less likely to be activated
+        # (everything beyond the first `top_k` journeys), and also remove all journey graph guidelines.
+        # Removing these guidelines
+        # matching pass fast and focused on the most likely flows.
+        # Step 4: Filter the best matches out of those.
+        
+    async def _prune_low_prob_guidelines_and_all_graph(
+        self,
+        context: LoadedContext,
+        relevant_journeys: Sequence[Journey],
+        all_stored_guidelines: dict[GuidelineId, Guideline],
+        top_k: int,
+    ) -> tuple[list[Guideline], list[Journey]]:
+```
+
+`.venv/Lib/site-packages/parlant/core/entity_cq.py`
+
+```python
+    async def finds_journeys_for_context(
+        self,
+        agent_id: AgentId,
+    ) -> Sequence[Journey]:
+        
+    async def sort_journeys_by_contextual_relevance(
+        self,
+        available_journeys: Sequence[Journey],
+        query: str,
+    ) -> Sequence[Journey]:
+        
+    async def find_guidelines_for_context(
+        self,
+        agent_id: AgentId,
+        journeys: Sequence[Journey],
+    ) -> Sequence[Guideline]:
+```
+
+`.venv/Lib/site-packages/parlant/core/journeys.py`
+
+```python
+    async def list_journeys(
+        self,
+        tags: Optional[Sequence[TagId]] = None,
+        condition: Optional[GuidelineId] = None,
+    ) -> Sequence[Journey]:
+```
+
+`.venv/Lib/site-packages/parlant/core/journey_guideline_projection.py`
+
+```
+    async def project_journey_to_guidelines(
+        self,
+        journey_id: JourneyId,
+    ) -> Sequence[Guideline]:
+```
+
+`.venv/Lib/site-packages/parlant/core/engines/alpha/guideline_matching/guideline_matcher.py`
+
+```
+    async def match_guidelines(
+        self,
+        context: LoadedContext,
+        active_journeys: Sequence[Journey],
+        guidelines: Sequence[Guideline],
+    ) -> GuidelineMatchingResult:
+```
+
+
+
 ### 完整流程图
 
 ```
