@@ -10,7 +10,9 @@
 ```
 
 ```bash
-.\run.bat
+.\run.bat zhipu
+.\run.bat ollama
+.\run.bat emcie
 ```
 
 ```bash
@@ -21,38 +23,7 @@ http://localhost:8800/
 
 ```sh
 PS D:\coding\hello-parlant> .\run.bat
-2025-11-04T06:09:24.260940Z [info     ] [<main>] Parlant server version 3.0.3
-2025-11-04T06:09:24.260940Z [info     ] [<main>] Using home directory 'D:\coding\hello-parlant\parlant-data'
-2025-11-04T06:09:24.262939Z [info     ] [<main>] No external modules selected
-2025-11-04T06:09:24.398374Z [info     ] [<main>] Initialized OllamaService with qwen2.5:latest at http://localhost:11434
-
-                             ..
-                          :=++++=-
-                        :+***+++**+.
-                      .=*****++++*+=:.
-                     .=+++*******-
-             ..:::::...  .::::=++
-         .-+***#####**+=-..=+=:.
-       :+######***********. =***=.
-      =####**###**********+ .*****-
-     =#******###** v3.0 **+ .******-
-    :#*******#######****=. =********:
-    .*#******#*:---=-::..-*********+
-     -##*##***. -----=++*******++**:
-      :*###**: =****###**********+:
-        -+*#- -****************+-
-          .: .*******++++++==-.
-            .****+=:.
-            =+=:.
-           ..
-      
-
-✅ Agent Otto Carmen is running with Ollama backend!
-Caching entity embeddings (1) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:00:00
-2025-11-04T06:09:25.367089Z [info     ] [<main>] .-----------------------------------------.
-2025-11-04T06:09:25.367089Z [info     ] [<main>] | Server is ready for some serious action |
-2025-11-04T06:09:25.368089Z [info     ] [<main>] '-----------------------------------------'
-2025-11-04T06:09:25.368089Z [info     ] [<main>] Server authorization policy: development
+...
 2025-11-04T06:09:25.368089Z [info     ] [<main>] Try the Sandbox UI at http://localhost:8800
 ```
 
